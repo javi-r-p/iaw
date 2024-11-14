@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>Curriculum Vitae - Formulario Datos Personales</title>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="formulario.css"/>
+	</head>
+
+	<body>
+		<?php
+			$nombre = $_POST['nombre'];
+			$fechaNac = $_POST['fechaNac'];
+			$tlf = $_POST['tlf'];
+			$email = $_POST['email'];
+			$direccion = $_POST['direccion'];
+			$provincia = $_POST['provincia'];
+			$cp = $_POST['cp'];
+			$otros = $_POST['otros'];
+			$ejecucion = $_POST['EJECUCION'];
+			if (empty($_POST['nombre')) {
+
+			}
+		?>
+		<h1>CURRICULUM VITAE</h1>
+
+		<!-- FORMULARIO DATOS PERSONALES -->
+		<h2>Formulario Datos Personales</h2>
+
+		<form action="datosPersonales.php" method="POST">
+		<table id="DatosPersonales">
+			<!-- Fila 1 -->
+			<tr>
+				<th>NOMBRE:</th>
+				<td colspan="3"><input name="nombre" type="text" size="60%"/></td>
+			<tr>
+			<!-- Fila 2 -->
+			<tr>
+				<th style="width:20%">FECHA NAC:</th>
+				<td style="width:30%"><input name="fechaNac" type="date"/></td>
+				<th style="width:10%">TLF:</th>
+				<td style="width:30%"><input name="tlf" type="number"/></td>
+			<tr>
+			<!-- Fila 3 -->
+			<tr>
+				<th>EMAIL:</th>
+				<td colspan="3"><input name="email" type="email" size="60%"/></td>
+			<tr>
+
+			<!-- Fila 4 -->
+			<tr>
+				<th>DIRECCIÓN:</th>
+				<td colspan="3"><input name="direccion" type="text" size="60%"/></td>
+			<tr>
+			<!-- Fila 5 -->
+			<tr>
+				<th>POBLACIÓN:</th>
+				<td><input name="poblacion" type="text" size="20%"/></td>
+				<th>CP:</th>
+				<td><input name="cp" type="number" size="15%"/></td>
+			<tr>
+			<!-- Fila 6 -->
+			<tr>
+				<th>PROVINCIA:</th>
+				<td><select name="provincia">
+						<option>Albacete</option>
+						<option>Alicante</option>
+						<option>Almería</option>
+						<option selected>Murcia</option>
+						<option>Valencia</option>
+					</select>
+				</td>
+				<th>OTROS:</th>
+				<td rowspan="2"><textarea name="otros" rows="4" cols="20"></textarea> </td>
+
+			<!-- Fila 7 -->
+			<tr>
+				<th colspan="3">
+			<!-- Botones -->
+			<input type="submit" name="EJECUTAR" value="Aceptar"/>
+			<input type="reset" name="CANCELAR" value="Cancelar"/>
+			<input type="button" name="SALIR" value="Salir" ondblClick="window.close();" />
+			<input type="button" name="INFO" value="Información" onclick="window.alert('Esto es un ejemplo de formulario');" />
+				</th>
+			<tr>
+
+		</table>
+		</form>
+
+	</body>
+</html>

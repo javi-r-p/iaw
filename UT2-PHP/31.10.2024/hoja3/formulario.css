@@ -1,0 +1,58 @@
+html {
+		background-color: grey;
+
+}
+
+body {
+		background-image: url(madera.jpg); 
+		font-family: Arial;
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		border-color: orange;
+		border-style: groove;
+		border-width: 20px;
+		padding: 2%;
+
+	}
+	
+h1 {
+		background-color: orange; 
+		color: yellow; 
+		text-align: center;
+		
+}
+
+h2{
+	background-color: darkRed; 
+	color: white;
+	font-style: italic;
+
+}
+
+table#DatosPersonales {
+	border-width:10;
+	border-style: solid;
+	border-color: DarkRed;
+	background-color: Yellow;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table#DatosPersonales th {
+     color: DarkRed;
+	 border-width:3;
+	 border-style: solid;
+	 border-color: DarkRed;
+	 background-color: orange;
+	 padding: 10px;
+}
+
+table#DatosPersonales td {
+     border-width:3;
+	 border-style: solid;
+	 border-color: DarkRed;
+	 background-color: Moccasin;
+	 padding: 10px;
+}
