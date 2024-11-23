@@ -1,0 +1,9 @@
+[Unit]
+Description=Make a folder with actual date
+After=network.target
+
+[Service]
+ExecStart=/bin/autofolder.sh
+
+[Install]
+WantedBy=default.target

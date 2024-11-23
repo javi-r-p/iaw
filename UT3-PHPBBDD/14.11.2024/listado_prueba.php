@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<?php
 			// 1. Conectar con la BBDD
-			$conexion = mysqli_connect('localhost', 'consultas', 'consultas', 'jardineria');
+			$conexion = mysqli_connect('localhost', 'modf', 'modf', 'jardineria');
 			// 2. Consulta SQL
 			$consulta = mysqli_query($conexion, "SELECT * FROM Empleados");
 		?>

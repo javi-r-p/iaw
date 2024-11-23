@@ -12,7 +12,7 @@
 			}
 		</style>
 		<?php
-			$conexion = mysqli_connect('localhost', 'consultas', 'consultas', 'jardineria');
+			$conexion = mysqli_connect('localhost', 'modf', 'modf', 'jardineria');
 		?>
 	</head>
 	<body>
