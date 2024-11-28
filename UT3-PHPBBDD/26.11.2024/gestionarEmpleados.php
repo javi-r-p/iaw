@@ -41,7 +41,12 @@
 						} else {
 		?>
 							<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-										<label>Código del empleado: </label><input type="number" name="codigoEmpleado" pattern="^(0|[1-9]\d*)$" required>
+		<?php
+							if (isset($_GET['codigoEmpleado'])) {
+								echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' value='" . $_GET['codigoEmpleado'] . "' pattern='^(0|[1-9]\d*)$' required>\n";
+							} else {
+		?>
+							<label>Código del empleado: </label><input type="number" name="codigoEmpleado" pattern="^(0|[1-9]\d*)$" required>
 										<br>
 										<label>Nombre: </label><input type="text" name="nombre" pattern="^[A-Za-z\s]{1,50}$" required>
 										<br>
@@ -92,18 +97,18 @@
 								$empleado = mysqli_fetch_array($consultaEmpleado);
 								if (mysqli_num_rows($consultaEmpleado) == 1) {
 									echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
-										echo "<label>Nombre: </label><input type='text' name='nombre' value='" . $empleado['Nombre'] . "'>\n";
+										echo "<label>Nombre: </label><input type='text' name='nombre' value='" . $empleado['Nombre'] . "' required>\n";
 										echo "<br>\n";
-										echo "<label>Primer apellido: </label><input type='text' name='nombre' value='" . $empleado['Apellido1'] . "'>\n";
+										echo "<label>Primer apellido: </label><input type='text' name='nombre' value='" . $empleado['Apellido1'] . "' required>\n";
 										echo "<br>\n";
-										echo "<label>Segundo apellido: </label><input type='text' name='apellido1' value='" . $empleado['Apellido2'] . "'>\n";
+										echo "<label>Segundo apellido: </label><input type='text' name='apellido1' value='" . $empleado['Apellido2'] . "' required>\n";
 										echo "<br>\n";
-										echo "<label>Extensión: </label><input type='text' name='extension' value='" . $empleado['Extension'] . "'>\n";
+										echo "<label>Extensión: </label><input type='text' name='extension' value='" . $empleado['Extension'] . "' required>\n";
 										echo "<br>\n";
-										echo "<label>Dirección de correo electrónico: </label><input type='text' name='extension' value='" . $empleado['Email'] . "'>\n";
+										echo "<label>Dirección de correo electrónico: </label><input type='text' name='extension' value='" . $empleado['Email'] . "' required>\n";
 										echo "<br>\n";
 										echo "<label>Código de la oficina: </label>";
-										echo "<select name='codigoOficina'>\n";
+										echo "<select name='codigoOficina' required>\n";
 										$consultaOficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ', ', Pais) AS 'Ubicacion' FROM Oficinas");
 										while ($oficinas = mysqli_fetch_array($consultaOficinas)) {
 											echo "<option value='" . $oficinas['CodigoOficina'] . "'>" . $oficinas['CodigoOficina'] . " - " . $oficinas['Ubicacion'] . "</option>\n";
@@ -119,9 +124,12 @@
 										echo "</select>\n";
 										mysqli_free_result($consultaJefes);
 										mysqli_free_result($consultaOficinas);
+										echo "<br>\n";
+										echo "<input type='submit' name='NUEVOSDATOS' value='Modificar empleado'>\n";
 									echo "</form>\n";
 								} else {
 									echo "<h2>El empleado con código " . $_POST['codigoEmpleado'] . " no existe.</h2>\n";
+									echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=insertar&ENVIAR=Iniciar+aplicación'>Crear un empleado nuevo</a>\n";
 								}
 							} else {
 								echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=modificar&ENVIAR=Iniciar+aplicación' method='POST'>\n";
