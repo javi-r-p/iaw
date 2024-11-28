@@ -128,7 +128,7 @@
 									echo "</form>\n";
 								} else {
 									echo "<h2>El empleado con código " . $_POST['codigoEmpleado'] . " no existe.</h2>\n";
-									echo "<a href='" . $_SERVER['PHP_SELF'] . "?" . $_POST['codigoEmpleado'] . "&accion=insertar&ENVIAR=Iniciar+aplicación'>Crear un empleado nuevo</a>\n";
+									echo "<a href='" . $_SERVER['PHP_SELF'] . "?codigoEmpleado=" . $_POST['codigoEmpleado'] . "&accion=insertar&ENVIAR=Iniciar+aplicación'>Crear un empleado nuevo</a>\n";
 								}
 							} else {
 								echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=modificar&ENVIAR=Iniciar+aplicación' method='POST'>\n";
