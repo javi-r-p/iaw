@@ -108,8 +108,9 @@
 										while ($oficinas = mysqli_fetch_array($consultaOficinas)) {
 											echo "<option value='" . $oficinas['CodigoOficina'] . "'>" . $oficinas['CodigoOficina'] . " - " . $oficinas['Ubicacion'] . "</option>\n";
 										}
+										echo "</select>\n"
 										echo "<br>\n";
-										echo "<label>Código del jefe: </label>\n";
+										echo "<label>Código del jefe:</label>\n";
 										echo "<select name='codigoJefe'>\n";
 										$consultaJefes = mysqli_query($conexion, "SELECT CodigoEmpleado, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS 'NombreCompleto' FROM Empleados");
 										while ($jefes = mysqli_fetch_array($consultaJefes)) {
