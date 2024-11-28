@@ -115,7 +115,7 @@
 										while ($jefes = mysqli_fetch_array($consultaJefes)) {
 											echo "<option value='" . $jefes['CodigoEmpleado'] . "'>" . $jefes['NombreCompleto'] . "</option>\n";
 										}
-										echo "<select>\n";
+										echo "</select>\n";
 										mysqli_free_result($consultaJefes);
 										mysqli_free_result($consultaOficinas);
 									echo "</form>\n";
