@@ -87,7 +87,7 @@
 						if (isset($_POST['NUEVOSDATOS'])) {
 
 						} else {
-							if (isset($_GET['MODIFICAR'])) {
+							if (isset($_POST['MODIFICAR'])) {
 								echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
 									echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado'>\n";
 									echo "<label>Nombre: </label><input type='text' name='nombre' value='" . $empleado['Nombre'] . "'>\n";
@@ -118,7 +118,7 @@
 									mysqli_free_result($consultaOficinas);
 								echo "</form>\n";
 							} else {
-								echo "<form action='" . $_SERVER['PHP_SELF'] . "&accion=modificar&ENVIAR=Iniciar+aplicación' method='GET'>\n";
+								echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
 									echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado'>\n";
 									echo "<input type='submit' name='MODIFICAR' value='Modificar empleado'>\n";
 								echo "</form>\n";
