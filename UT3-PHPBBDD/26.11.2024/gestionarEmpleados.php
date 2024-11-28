@@ -98,9 +98,9 @@
 										echo "<br>\n";
 										echo "<label>Segundo apellido: </label><input type='text' name='apellido1' value='" . $empleado['Apellido2'] . "'>\n";
 										echo "<br>\n";
-										echo "<label>Extensión: </label><input type='text' name='extension' value='" . $empleado['extension'] . "'>\n";
+										echo "<label>Extensión: </label><input type='text' name='extension' value='" . $empleado['Extension'] . "'>\n";
 										echo "<br>\n";
-										echo "<label>Dirección de correo electrónico: </label><input type='text' name='extension' value='" . $empleado['email'] . "'>\n";
+										echo "<label>Dirección de correo electrónico: </label><input type='text' name='extension' value='" . $empleado['Email'] . "'>\n";
 										echo "<br>\n";
 										echo "<label>Código de la oficina: </label>";
 										echo "<select name='codigoOficina'>\n";
