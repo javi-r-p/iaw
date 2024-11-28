@@ -169,6 +169,8 @@
 							mysqli_free_result($consultaJefe);
 							mysqli_query($conexion, "DELETE FROM Empleados WHERE CodigoEmpleado = " . $_POST['codigoEmpleado']);
 							echo "<h3>Empleado eliminado</h3>\n";
+							echo "<br>\n";
+							echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 						} else {
 		?>
 							<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
@@ -184,8 +186,8 @@
 							$consultaEmpleado = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
 							$empleado = mysqli_fetch_array($consultaEmpleado);
 							if ((mysqli_num_rows($consultaEmpleado) == 0) AND ($_GET['accion'] != "insertar")) {
-								echo "<h1>No existe ese empleado</h1>";
-								echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&ENVIAR=Iniciar+aplicación'>Volver</a>";
+								echo "<h1>No existe ese empleado</h1>\n";
+								echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&ENVIAR=Iniciar+aplicación'>Volver</a>\n";
 							}
 							if ($empleado != NULL) {
 								$consultaOficina = mysqli_query($conexion, "SELECT CONCAT(Ciudad, ', ', Pais) AS Ubicacion FROM Oficinas WHERE CodigoOficina = '" . $empleado['CodigoOficina'] . "'");
@@ -218,7 +220,7 @@
 								echo "<br>\n";
 								echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&ENVIAR=Iniciar+aplicación'>Realizar otra consulta</a>\n";
 								echo "<br>\n";
-								echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>";
+								echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 								mysqli_free_result($consultaEmpleado);
 								mysqli_free_result($consultaOficina);
 								mysqli_free_result($consultaJefe);
