@@ -88,35 +88,41 @@
 
 						} else {
 							if (isset($_POST['MODIFICAR'])) {
-								echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
-									echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado'>\n";
-									echo "<label>Nombre: </label><input type='text' name='nombre' value='" . $empleado['Nombre'] . "'>\n";
-									echo "<br>\n";
-									echo "<label>Primer apellido: </label><input type='text' name='nombre' value='" . $empleado['Apellido1'] . "'>\n";
-									echo "<br>\n";
-									echo "<label>Segundo apellido: </label><input type='text' name='apellido1' value='" . $empleado['Apellido2'] . "'>\n";
-									echo "<br>\n";
-									echo "<label>Extensión: </label><input type='text' name='extension' value='" . $empleado['extension'] . "'>\n";
-									echo "<br>\n";
-									echo "<label>Dirección de correo electrónico: </label><input type='text' name='extension' value='" . $empleado['email'] . "'>\n";
-									echo "<br>\n";
-									echo "<label>Código de la oficina: </label>";
-									echo "<selection>\n";
-									$consultaOficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ', ', Pais) AS 'Ubicacion' FROM Oficinas");
-									while ($oficinas = mysqli_fetch_array($consultaOficinas)) {
-										echo "<option value='" . $oficinas['CodigoOficina'] . "'>" . $oficinas['CodigoOficina'] . " - " . $oficinas['Ubicacion'] . "</option>\n";
-									}
-									echo "</selection>\n";
-									echo "<br>\n";
-									echo "<label>Código del jefe: </label>\n";
-									$consultaJefes = mysqli_query($conexion, "SELECT CodigoEmpleado, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS 'NombreCompleto' FROM Empleados");
-									while ($jefes = mysqli_fetch_array($consultaJefes)) {
-										echo "<option value='" . $jefes['CodigoEmpleado'] . "'>" . $jefes['NombreCompleto'] . "</option>\n";
-									}
-									echo "<selection>\n";
-									mysqli_free_result($consultaJefes);
-									mysqli_free_result($consultaOficinas);
-								echo "</form>\n";
+								$consultaEmpleado = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = " . $_POST['codigoEmpleado']);
+								$empleado = mysqli_fetch_array($consultaEmpleado);
+								if (mysqli_num_rows($consultaEmpleado) == 1) {
+									echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
+										echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado'>\n";
+										echo "<label>Nombre: </label><input type='text' name='nombre' value='" . $empleado['Nombre'] . "'>\n";
+										echo "<br>\n";
+										echo "<label>Primer apellido: </label><input type='text' name='nombre' value='" . $empleado['Apellido1'] . "'>\n";
+										echo "<br>\n";
+										echo "<label>Segundo apellido: </label><input type='text' name='apellido1' value='" . $empleado['Apellido2'] . "'>\n";
+										echo "<br>\n";
+										echo "<label>Extensión: </label><input type='text' name='extension' value='" . $empleado['extension'] . "'>\n";
+										echo "<br>\n";
+										echo "<label>Dirección de correo electrónico: </label><input type='text' name='extension' value='" . $empleado['email'] . "'>\n";
+										echo "<br>\n";
+										echo "<label>Código de la oficina: </label>";
+										echo "<selection>\n";
+										$consultaOficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ', ', Pais) AS 'Ubicacion' FROM Oficinas");
+										while ($oficinas = mysqli_fetch_array($consultaOficinas)) {
+											echo "<option value='" . $oficinas['CodigoOficina'] . "'>" . $oficinas['CodigoOficina'] . " - " . $oficinas['Ubicacion'] . "</option>\n";
+										}
+										echo "</selection>\n";
+										echo "<br>\n";
+										echo "<label>Código del jefe: </label>\n";
+										$consultaJefes = mysqli_query($conexion, "SELECT CodigoEmpleado, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS 'NombreCompleto' FROM Empleados");
+										while ($jefes = mysqli_fetch_array($consultaJefes)) {
+											echo "<option value='" . $jefes['CodigoEmpleado'] . "'>" . $jefes['NombreCompleto'] . "</option>\n";
+										}
+										echo "<selection>\n";
+										mysqli_free_result($consultaJefes);
+										mysqli_free_result($consultaOficinas);
+									echo "</form>\n";
+								} else {
+									echo "<h2>El empleado con código " . $_POST['codigoEmpleado'] . " no existe.</h2>\n";
+								}
 							} else {
 								echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
 									echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado'>\n";
