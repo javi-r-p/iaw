@@ -124,7 +124,7 @@
 									echo "<h2>El empleado con código " . $_POST['codigoEmpleado'] . " no existe.</h2>\n";
 								}
 							} else {
-								echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
+								echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=modificar&ENVIAR=Iniciar+aplicación' method='POST'>\n";
 									echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado'>\n";
 									echo "<input type='submit' name='MODIFICAR' value='Modificar empleado'>\n";
 								echo "</form>\n";
