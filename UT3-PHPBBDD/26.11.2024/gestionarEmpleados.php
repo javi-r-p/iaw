@@ -37,7 +37,7 @@
 							unset($_POST);
 							echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=insertar&ENVIAR=Iniciar+aplicación'>Insertar otro empleado</a>\n";
 							echo "<br>\n";
-							echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al formulario</a>\n";
+							echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 						} else {
 		?>
 							<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
@@ -83,10 +83,62 @@
 		<?php
 						}
 						break;
-				//	case "modificar":
-				//		break;
-				//	case "eliminar":
-				//		break;
+					case "modificar":
+						if (isset($_POST['MODIFICAR'])) {
+
+						} else {
+							echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
+								echo "<label>Nombre: </label><input type='text' name='nombre' value='" . $empleado['Nombre'] . "'>\n";
+							</form>
+						}
+						break;
+					case "eliminar":
+						if (isset($_POST['ELIMINAR'])) {
+							$consultaEmpleado = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = " . $_POST['codigoEmpleado']);
+							$empleado = mysqli_fetch_array($consultaEmpleado);
+							$consultaOficina = mysqli_query($conexion, "SELECT CONCAT(Ciudad, ', ', Pais) AS Ubicacion FROM Oficinas WHERE CodigoOficina = '" . $empleado['CodigoOficina'] . "'");
+							$oficina = mysqli_fetch_array($consultaOficina);
+							$consultaJefe = mysqli_query($conexion, "SELECT CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Empleados WHERE CodigoJefe = " . $empleado['CodigoJefe']);
+							$jefe = mysqli_fetch_array($consultaJefe);
+							global $empleado;
+							global $oficina;
+							global $jefe;
+							echo "<table>\n";
+								echo "<tr>\n";
+									echo "<th>Nombre completo</th>\n";
+									echo "<th>Extensión</th>\n";
+									echo "<th>Dirección de correo electrónico</th>\n";
+									echo "<th>Oficina - Código</th>\n";
+									echo "<th>Jefe - Código</th>\n";
+									echo "<th>Puesto</th>\n";
+								echo "</tr>\n";
+								echo "<tr>\n";
+									echo "<td>" . $empleado['Nombre'] . " " . $empleado['Apellido1'] . " " . $empleado['Apellido2'] . "</td>\n";
+									echo "<td>" . $empleado['Extension'] . "</td>\n";
+									echo "<td>" . $empleado['Email'] . "</td>\n";
+									echo "<td>" . $oficina['Ubicacion'] . " - " . $empleado['CodigoOficina'] . "</td>\n";
+									echo "<td>" . $jefe['NombreCompleto'] . " - " . $empleado['CodigoJefe'] . "</td>\n";
+									echo "<td>" . $empleado['Puesto'] . "</td>\n";
+								echo "</tr>\n";
+							echo "</table>\n";
+							echo "<br>\n";
+							echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=eliminar&ENVIAR=Iniciar+aplicación'>Eliminar otro empleado</a>\n";
+							echo "<br>\n";
+							echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>";
+							mysqli_free_result($consultaEmpleado);
+							mysqli_free_result($consultaOficina);
+							mysqli_free_result($consultaJefe);
+							mysqli_query($conexion, "DELETE FROM Empleados WHERE CodigoEmpleado = " . $_POST['codigoEmpleado']);
+							echo "<h3>Empleado eliminado</h3>\n";
+						} else {
+		?>
+							<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+								<label>Introduce un código de empleado: </label><input type="number" name="codigoEmpleado" required>
+								<input type="submit" name="ELIMINAR" value="Eliminar empleado">
+							</form>
+		<?php
+						}
+						break;
 					case "consultar":
 						if (isset($_POST['CONSULTAR'])) {
 							$codigoEmpleado = $_POST['codigoEmpleado'];
@@ -127,7 +179,10 @@
 								echo "<br>\n";
 								echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&ENVIAR=Iniciar+aplicación'>Realizar otra consulta</a>\n";
 								echo "<br>\n";
-								echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al formulario</a>";
+								echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>";
+								mysqli_free_result($consultaEmpleado);
+								mysqli_free_result($consultaOficina);
+								mysqli_free_result($consultaJefe);
 							}
 						} else {
 							echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=consultar&ENVIAR=Iniciar+aplicación' method='POST'>\n";
@@ -135,13 +190,12 @@
 								echo "<input type='submit' name='CONSULTAR' value='Realizar búsqueda'>\n";
 							echo "</form>\n";
 						}
-						mysqli_free_result($consultaEmpleado);
-						mysqli_free_result($consultaOficina);
-						mysqli_free_result($consultaJefe);
 						break;
 				}
 			} else {
 		?>
+			<h1>Gestión de empleados</h1>
+			<h2>Selecciona una opción</h2>
 			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
 				<input type="radio" name="accion" value="insertar" required><label>Dar de alta un empleado</label>
 				<br>
