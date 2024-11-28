@@ -39,52 +39,51 @@
 							echo "<br>\n";
 							echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 						} else {
-		?>
-							<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-		<?php
+							echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
 							if (isset($_GET['codigoEmpleado'])) {
 								echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' value='" . $_GET['codigoEmpleado'] . "' pattern='^(0|[1-9]\d*)$' required>\n";
 							} else {
+								echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' pattern='^(0|[1-9]\d*)$' required>\n";
+							}
 		?>
-							<label>Código del empleado: </label><input type="number" name="codigoEmpleado" pattern="^(0|[1-9]\d*)$" required>
-										<br>
-										<label>Nombre: </label><input type="text" name="nombre" pattern="^[A-Za-z\s]{1,50}$" required>
-										<br>
-										<label>Primer apellido: </label><input type="text" name="apellido1" pattern="^[A-Za-z\s]{1,50}$" required>
-										<br>
-										<label>Segundo apellido: </label><input type="text" name="apellido2" pattern="^[A-Za-z\s]{1,50}$" required>
-										<br>
-										<label>Extensión: </label><input type="number" name="extension" pattern="^\d{1,10}$" required>
-										<br>
-										<label>Dirección de correo electrónico: </label><input type="text" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
-										<br>
-										<label>Oficina</label>
-										<select name="codigoOficina" required>
-											<?php
-												$consultaOficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ', ', Pais) AS 'Ubicacion' FROM Oficinas");
-												while ($oficinas = mysqli_fetch_array($consultaOficinas)) {
-													echo "<option value='" . $oficinas['CodigoOficina'] . "'>" . $oficinas['CodigoOficina'] . " - " . $oficinas['Ubicacion'] . "</option>\n";
-												}
-												mysqli_free_result($consultaOficinas);
-											?>
-										</select>
-										<br>
-										<label>Jefe</label>
-										<select name="codigoJefe" required>
-											<?php
-												$consultaJefes = mysqli_query($conexion, "SELECT CodigoEmpleado, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS 'NombreCompleto' FROM Empleados");
-												while ($jefes = mysqli_fetch_array($consultaJefes)) {
-													echo "<option value='" . $jefes['CodigoEmpleado'] . "'>" . $jefes['NombreCompleto'] . "</option>\n";
-												}
-												mysqli_free_result($consultaJefes);
-											?>
-										</select>
-										<br>
-										<label>Puesto: </label><input type="text" name="puesto" pattern="^[A-Za-z\s]{1,50}$" required>
-										<br>
-										<input type="submit" name="INSERTAR" value="Insertar empleado">
-										<input type="reset" value="Vaciar campos">
-									</form>
+							<br>
+							<label>Nombre: </label><input type="text" name="nombre" pattern="^[A-Za-z\s]{1,50}$" required>
+							<br>
+							<label>Primer apellido: </label><input type="text" name="apellido1" pattern="^[A-Za-z\s]{1,50}$" required>
+							<br>
+							<label>Segundo apellido: </label><input type="text" name="apellido2" pattern="^[A-Za-z\s]{1,50}$" required>
+							<br>
+							<label>Extensión: </label><input type="number" name="extension" pattern="^\d{1,10}$" required>
+							<br>
+							<label>Dirección de correo electrónico: </label><input type="text" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+							<br>
+							<label>Oficina</label>
+							<select name="codigoOficina" required>
+								<?php
+									$consultaOficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ', ', Pais) AS 'Ubicacion' FROM Oficinas");
+									while ($oficinas = mysqli_fetch_array($consultaOficinas)) {
+										echo "<option value='" . $oficinas['CodigoOficina'] . "'>" . $oficinas['CodigoOficina'] . " - " . $oficinas['Ubicacion'] . "</option>\n";
+									}
+									mysqli_free_result($consultaOficinas);
+								?>
+							</select>
+							<br>
+							<label>Jefe</label>
+							<select name="codigoJefe" required>
+								<?php
+									$consultaJefes = mysqli_query($conexion, "SELECT CodigoEmpleado, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS 'NombreCompleto' FROM Empleados");
+									while ($jefes = mysqli_fetch_array($consultaJefes)) {
+										echo "<option value='" . $jefes['CodigoEmpleado'] . "'>" . $jefes['NombreCompleto'] . "</option>\n";
+									}
+									mysqli_free_result($consultaJefes);
+								?>
+							</select>
+							<br>
+							<label>Puesto: </label><input type="text" name="puesto" pattern="^[A-Za-z\s]{1,50}$" required>
+							<br>
+							<input type="submit" name="INSERTAR" value="Insertar empleado">
+							<input type="reset" value="Vaciar campos">
+						</form>
 		<?php
 						}
 						break;
