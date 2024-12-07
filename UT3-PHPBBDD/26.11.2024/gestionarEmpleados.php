@@ -96,7 +96,7 @@
 						mysqli_free_result($oficinas);
 						echo "</select><br>\n";
 						echo "<label>Identificador de supervisor: </label><select' name='jefe' required><br>\n";
-						$supervisores = mysqli_query($conexion, "SELECT CodigoEmpleado, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Empleados");
+						$supervisores = mysqli_query($conexion, "SELECT CodigoJefe, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Empleados");
 						while ($supervisor = mysqli_fetch_array($supervisores)) {
 							echo "<option value='" . $supervisor['CodigoJefe'] ."'>" .$supervisor['CodigoEmpleado'] . " - " . $supervisor['NombreCompleto'] . "</option>\n";
 						}
