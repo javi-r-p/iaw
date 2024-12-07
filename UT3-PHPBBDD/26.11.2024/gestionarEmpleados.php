@@ -13,6 +13,14 @@
 		th, td {
 			padding: 10px;
 		}
+		input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		input[type=number] {
+			-moz-appearance: textfield;
+			appearance: textfield;
+		}
 	</style>
 	<?php
 		$conexion = mysqli_connect('localhost', 'modf', 'modf', 'jardineria');
@@ -30,8 +38,8 @@
 				$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
 				if (mysqli_num_rows($consulta) == 0) {
 					echo "<h3>No existe ningún empleado con el código " . $codigoEmpleado . "</h3>\n";
-					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar\n";
-					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar'>Ejecutar otra consulta</a>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar'>Ejecutar otra consulta</a>\n";
 				} else {
 					$empleado = mysqli_fetch_array($consulta);
 					echo "<table>\n";
@@ -59,7 +67,7 @@
 					echo "</tr>\n";
 					echo "</table>\n";
 					echo "<hr>\n";
-					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar'>Consultar otro empleado</a>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar'>Consultar otro empleado</a>\n";
 					echo "<br>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 				}
@@ -73,9 +81,9 @@
 					if (mysqli_num_rows($consulta) == 1) {
 						echo "<h2>El empleado ya existe</h2>\n";
 						echo "<hr>";
-						echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>";
+						echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 					} else {
-						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=iniciar" . "' method='POST'>\n";
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=Iniciar" . "' method='POST'>\n";
 						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $_POST['codigoEmpleado'] . "'><br>\n";
 						echo "<label>Nombre completo: </label><input type='text' name='nombre'><br>\n";
 						echo "<label>Extensión: </label><input type='text' name='extension'><br>\n";
@@ -85,20 +93,20 @@
 						echo "<label>Puesto: </label><input type='text' name='puesto'><br>\n";
 						echo "<input type='submit' name='insertarEmpleado' value='Insertar'>\n";
 						echo "<input type='reset' value='Borrar campos'>\n";
-						echo "</form>";					
+						echo "</form>\n";					
 					}
+					mysqli_free_result($consulta);
 				} else {
 					if (isset($_POST['insertarEmpleado'])) {
 						$nombre = $_POST['nombre'];
 						$nombreCompleto = explode (" ", $nombre);
 						mysqli_query ($conexion, "INSERT INTO Empleados VALUES (" . $_POST['codigoEmpleado'] . ", '" . $nombreCompleto[0] . "', '" . $nombreCompleto[1] . "', '" . $nombreCompleto[2] . "', '" . $_POST['extension'] . "', '" . $_POST['email'] . "', '" . $_POST['oficina'] . "', " . $_POST['jefe'] . ", '" . $_POST['puesto'] . "')");
 						echo "<h3>Empleado insertado</h3>\n";
-						echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar&codigoEmpleado=" . $_POST['codigoEmpleado'] . "'>Ver los datos del empleado " . $_POST['codigoEmpleado'] . "</a>\n";
+						echo "<a href='" . $_SERVER['PHP_SELF'] . "?verDatos=si&codigoEmpleado=" . $_POST['codigoEmpleado'] . "'>Ver los datos del empleado " . $_POST['codigoEmpleado'] . "</a>\n";
 						echo "<hr>\n";
-						echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=iniciar'>Insertar otro empleado</a>\n";
+						echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=Iniciar'>Insertar otro empleado</a>\n";
 						echo "<br>\n";
 						echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
-						
 					}
 				}
 			}
@@ -107,20 +115,20 @@
 					if (isset($_POST['ejecutarConsulta'])) {
 						consultar ($_POST['codigoEmpleado']);
 					} else {
-						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar' method='POST'>\n";
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar' method='POST'>\n";
 						echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' value='" . $_GET['codigoEmpleado'] . "' required>\n";
 						echo "<input type='submit' name='ejecutarConsulta' value='Consultar'>\n";
-						echo "</form>";
+						echo "</form>\n";
 					}
 					break;
 				case "insertar":
 					if (isset($_POST['codigoEmpleado'])) {
 						insertar();
 					} else {
-						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=iniciar' method='POST'>\n";
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=Iniciar' method='POST'>\n";
 						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado'><br>\n";
 						echo "<input type='submit' name='iniciarInsercion' value='Insertar'>\n";
-						echo "</form>";
+						echo "</form>\n";
 					}
 					break;
 				/* case "modificar":
@@ -131,6 +139,9 @@
 					echo "<h2>La opción que has seleccionado aún no está disponible.</h2>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 					break;
+			}
+			if (isset($_GET['verDatos'])) {
+				consultar($_GET['codigoEmpleado']);
 			}
 		} else {
 	?>
