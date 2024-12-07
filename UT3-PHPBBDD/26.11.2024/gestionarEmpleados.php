@@ -35,6 +35,11 @@
 			function consultar ($codigoEmpleado) {
 				echo "<h2>Consulta de empleado</h2>\n";
 				global $conexion;
+				if (isset($_GET['codigoEmpleado'])) {
+					$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
+				} else {
+					$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
+				}
 				$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
 				if (mysqli_num_rows($consulta) == 0) {
 					echo "<h3>No existe ningún empleado con el identificador " . $codigoEmpleado . "</h3>\n";
