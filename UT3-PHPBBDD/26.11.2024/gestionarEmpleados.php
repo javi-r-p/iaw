@@ -110,9 +110,9 @@
 					if (isset($_GET['codigoEmpleado'])) {
 						insertar($_GET['codigoEmpleado']);
 					} else {
-						echo "<form action='" . $_SERVER['PHP_SELF'] . "&accion=insertar&inicio=iniciar" . "' method='GET'>";
-						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado'><br>";
-						echo "<input type='submit' name='iniciarInsercion' value='Insertar'";
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "&accion=insertar&inicio=iniciar' method='GET'>\n";
+						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado'><br>\n";
+						echo "<input type='submit' name='iniciarInsercion' value='Insertar'>\n";
 						echo "</form>";
 					}
 					break;
