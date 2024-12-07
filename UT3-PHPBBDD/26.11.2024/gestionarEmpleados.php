@@ -91,6 +91,9 @@
 					if (isset($_POST['insertarEmpleados'])) {
 						$nombre = $_POST['nombre'];
 						$nombreCompleto = explode (" ", $nombre);
+						echo $nombreCompleto[0];
+						echo $nombreCompleto[1];
+						echo $nombreCompleto[2];
 						mysqli_query ($conexion, "INSERT INTO Empleados VALUES (" . $nombreCompleto[0] . ", " . $nombreCompleto[1] . ", " . $nombreCompleto[2] . ", " . $_POST['extension'] . ", " . $_POST['email'] . ", " . $_POST['oficina'] . ", " . $_POST['jefe'] . ", " . $_POST['puesto'] . ")");
 					}
 				}
