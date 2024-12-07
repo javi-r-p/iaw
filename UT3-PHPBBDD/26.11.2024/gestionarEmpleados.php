@@ -140,7 +140,7 @@
 						$codigoEmpleado = mysqli_query($conexion, "SELECT CodigoEmpleado FROM Empleados ORDER BY CodigoEmpleado DESC LIMIT 1");
 						$ultimoCodigoEmpleado = mysqli_fetch_array($codigoEmpleado);
 						$ultimoCodigoEmpleado = $ultimoCodigoEmpleado['CodigoEmpleado'] + 1;
-						mysqli_free_result($ultimoCodigoEmpleado);
+						mysqli_free_result($codigoEmpleado);
 						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=Iniciar' method='POST'>\n";
 						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $ultimoCodigoEmpleado . "' min='" . $ultimoCodigoEmpleado . "'><br>\n";
 						echo "<input type='submit' name='iniciarInsercion' value='Insertar'>\n";
