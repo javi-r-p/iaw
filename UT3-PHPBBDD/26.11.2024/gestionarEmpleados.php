@@ -30,6 +30,7 @@
 				$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
 				if (mysqli_num_rows($consulta) == 0) {
 					echo "<h3>No existe ningún empleado con el código " . $codigoEmpleado . "</h3>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar'>Ejecutar otra consulta</a>\n";
 				} else {
 					$empleado = mysqli_fetch_array($consulta);
@@ -62,6 +63,37 @@
 					echo "<br>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 				}
+				mysqli_free_result($consulta);
+			}
+			function insertar ($codigoEmpleado) {
+				global $conexion;
+				if (isset($_GET['iniciarInsercion'])) {
+					echo "<h2>Creación de un empleado\n</h2>";
+					$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE codigoEmpleado = $codigoEmpleado");
+					if (mysqli_num_rows($consulta) == 1) {
+						echo "<h2>El empleado ya existe</h2>\n";
+						echo "<hr>";
+						echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>";
+					} else {
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "&accion=insertar&inicio=iniciar" . "' method='POST'>\n";
+						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado'><br>\n";
+						echo "<label>Nombre completo: </label><input type='text' name='nombre'><br>\n";
+						echo "<label>Extensión: </label><input type='text' name='extension'><br>\n";
+						echo "<label>Correo electrónico: </label><input type='text' name='email'><br>\n";
+						echo "<label>Oficina: </label><input type='text' name='oficina'><br>\n";
+						echo "<label>Identificador de supervisor: </label><input type='number' name='jefe'><br>\n";
+						echo "<label>Puesto: </label><input type='text' name='puesto'><br>\n";
+						echo "<input type='submit' name='insertarEmpleado' value='Insertar'\n";
+						echo "<input type='reset' value='Borrar campos'\n";
+						echo "</form>";					
+					}
+				} else {
+					if (isset($_POST['insertarEmpleados'])) {
+						$nombre = $_POST['nombre'];
+						$nombreCompleto = explode (" ", $nombre);
+						mysqli_query ($conexion, "INSERT INTO Empleados VALUES (" . $nombreCompleto[0] . ", " . $nombreCompleto[1] . ", " . $nombreCompleto[2] . ", " . $_POST['extension'] . ", " . $_POST['email'] . ", " . $_POST['oficina'] . ", " . $_POST['jefe'] . ", " . $_POST['puesto'] . ")");
+					}
+				}
 			}
 			switch ($accion) {
 				case "consultar":
@@ -74,9 +106,17 @@
 						echo "</form>";
 					}
 					break;
-				/* case "insertar":
+				case "insertar":
+					if (isset($_GET['codigoEmpleado'])) {
+						insertar($_GET['codigoEmpleado']);
+					} else {
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "&accion=insertar&inicio=iniciar" . "' method='GET'>";
+						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado'><br>";
+						echo "<input type='submit' name='iniciarInsercion' value='Insertar'";
+						echo "</form>";
+					}
 					break;
-				case "modificar":
+				/* case "modificar":
 					break;
 				case "eliminar":
 					break; */
