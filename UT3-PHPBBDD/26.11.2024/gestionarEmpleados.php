@@ -94,7 +94,7 @@
 						echo $nombreCompleto[0];
 						echo $nombreCompleto[1];
 						echo $nombreCompleto[2];
-						mysqli_query ($conexion, "INSERT INTO Empleados VALUES ('" . $nombreCompleto[0] . "', '" . $nombreCompleto[1] . "', '" . $nombreCompleto[2] . "', '" . $_POST['extension'] . "', '" . $_POST['email'] . "', '" . $_POST['oficina'] . "', " . $_POST['jefe'] . ", '" . $_POST['puesto'] . "')");
+						mysqli_query ($conexion, "INSERT INTO Empleados VALUES (" . $_POST['codigoEmpleado'] . ", '" . $nombreCompleto[0] . "', '" . $nombreCompleto[1] . "', '" . $nombreCompleto[2] . "', '" . $_POST['extension'] . "', '" . $_POST['email'] . "', '" . $_POST['oficina'] . "', " . $_POST['jefe'] . ", '" . $_POST['puesto'] . "')");
 					}
 				}
 			}
