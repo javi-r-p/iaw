@@ -110,7 +110,7 @@
 					if (isset($_POST['codigoEmpleado'])) {
 						insertar();
 					} else {
-						echo "<form action='" . $_SERVER['PHP_SELF'] . "&accion=insertar&inicio=iniciar' method='POST'>\n";
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=iniciar' method='POST'>\n";
 						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado'><br>\n";
 						echo "<input type='submit' name='iniciarInsercion' value='Insertar'>\n";
 						echo "</form>";
