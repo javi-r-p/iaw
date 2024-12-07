@@ -84,12 +84,24 @@
 						echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 					} else {
 						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=Iniciar" . "' method='POST'>\n";
-						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $_POST['codigoEmpleado'] . "'><br>\n";
-						echo "<label>Nombre completo: </label><input type='text' name='nombre'><br>\n";
-						echo "<label>Extensión: </label><input type='text' name='extension'><br>\n";
-						echo "<label>Correo electrónico: </label><input type='text' name='email'><br>\n";
-						echo "<label>Oficina: </label><input type='text' name='oficina'><br>\n";
-						echo "<label>Identificador de supervisor: </label><input type='number' name='jefe'><br>\n";
+						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $_POST['codigoEmpleado'] . "' required><br>\n";
+						echo "<label>Nombre completo: </label><input type='text' name='nombre' required><br>\n";
+						echo "<label>Extensión: </label><input type='text' name='extension' required><br>\n";
+						echo "<label>Correo electrónico: </label><input type='text' name='email' required><br>\n";
+						echo "<label>Oficina: </label><select name='oficina' required><br>\n";
+						$oficinas = mysqli_query($conexion, "SELECT CodigoOficina CONCAT(Ciudad, ' ', Pais) AS Ubicacion FROM Oficinas");
+						while ($oficina = mysqli_fetch_array($oficinas)) {
+							echo "<option value='" . $oficina['CodigoOficina'] . "'>" . $oficina['CodigoOficina'] . " - " . $oficina['Ubicacion'] . "</option>\n";
+						}
+						mysqli_free_result($oficinas);
+						echo "</select><br>\n";
+						echo "<label>Identificador de supervisor: </label><select' name='jefe' required><br>\n";
+						$supervisores = mysqli_query($conexion, "SELECT CodigoEmpleado, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Empleados");
+						while ($supervisor = mysqli_fetch_array($supervisores)) {
+							echo "<option value='" . $supervisor['CodigoJefe'] ."'>" .$supervisor['CodigoEmpleado'] . " - " . $supervisor['NombreCompleto'] . "</option>\n";
+						}
+						mysqli_free_result($supervisores);
+						echo "</select>\n";
 						echo "<label>Puesto: </label><input type='text' name='puesto'><br>\n";
 						echo "<input type='submit' name='insertarEmpleado' value='Insertar'>\n";
 						echo "<input type='reset' value='Borrar campos'>\n";
