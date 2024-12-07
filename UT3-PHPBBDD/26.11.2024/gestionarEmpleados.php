@@ -83,7 +83,7 @@
 						echo "<label>Oficina: </label><input type='text' name='oficina'><br>\n";
 						echo "<label>Identificador de supervisor: </label><input type='number' name='jefe'><br>\n";
 						echo "<label>Puesto: </label><input type='text' name='puesto'><br>\n";
-						echo "<input type='submit' name='insertarEmpleado' value='Insertar'\n";
+						echo "<input type='submit' name='insertarEmpleado' value='Insertar'>\n";
 						echo "<input type='reset' value='Borrar campos'>\n";
 						echo "</form>";					
 					}
@@ -91,10 +91,14 @@
 					if (isset($_POST['insertarEmpleado'])) {
 						$nombre = $_POST['nombre'];
 						$nombreCompleto = explode (" ", $nombre);
-						echo $nombreCompleto[0];
-						echo $nombreCompleto[1];
-						echo $nombreCompleto[2];
 						mysqli_query ($conexion, "INSERT INTO Empleados VALUES (" . $_POST['codigoEmpleado'] . ", '" . $nombreCompleto[0] . "', '" . $nombreCompleto[1] . "', '" . $nombreCompleto[2] . "', '" . $_POST['extension'] . "', '" . $_POST['email'] . "', '" . $_POST['oficina'] . "', " . $_POST['jefe'] . ", '" . $_POST['puesto'] . "')");
+						echo "<h3>Empleado insertado</h3>\n";
+						echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar&codigoEmpleado=" . $_POST['codigoEmpleado'] . "'>Ver los datos del empleado " . $_POST['codigoEmpleado'] . "</a>\n";
+						echo "<hr>\n";
+						echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=iniciar'>Insertar otro empleado</a>\n";
+						echo "<br>\n";
+						echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
+						
 					}
 				}
 			}
@@ -104,7 +108,7 @@
 						consultar ($_POST['codigoEmpleado']);
 					} else {
 						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=iniciar' method='POST'>\n";
-						echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' required>\n";
+						echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' value='" . $_GET['codigoEmpleado'] . "' required>\n";
 						echo "<input type='submit' name='ejecutarConsulta' value='Consultar'>\n";
 						echo "</form>";
 					}
