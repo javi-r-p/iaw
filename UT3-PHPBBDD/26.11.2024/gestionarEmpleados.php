@@ -84,7 +84,7 @@
 						echo "<label>Identificador de supervisor: </label><input type='number' name='jefe'><br>\n";
 						echo "<label>Puesto: </label><input type='text' name='puesto'><br>\n";
 						echo "<input type='submit' name='insertarEmpleado' value='Insertar'\n";
-						echo "<input type='reset' value='Borrar campos'\n";
+						echo "<input type='reset' value='Borrar campos'>\n";
 						echo "</form>";					
 					}
 				} else {
