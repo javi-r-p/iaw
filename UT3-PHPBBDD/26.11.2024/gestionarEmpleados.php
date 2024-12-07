@@ -101,7 +101,7 @@
 							echo "<option value='" . $supervisor['CodigoJefe'] ."'>" .$supervisor['CodigoJefe'] . " - " . $supervisor['NombreCompleto'] . "</option>\n";
 						}
 						mysqli_free_result($supervisores);
-						echo "</select>\n";
+						echo "</select><br>\n";
 						echo "<label>Puesto: </label><input type='text' name='puesto'><br>\n";
 						echo "<input type='submit' name='insertarEmpleado' value='Insertar'>\n";
 						echo "<input type='reset' value='Borrar campos'>\n";
