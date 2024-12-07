@@ -88,7 +88,7 @@
 						echo "</form>";					
 					}
 				} else {
-					if (isset($_POST['insertarEmpleados'])) {
+					if (isset($_POST['insertarEmpleado'])) {
 						$nombre = $_POST['nombre'];
 						$nombreCompleto = explode (" ", $nombre);
 						echo $nombreCompleto[0];
