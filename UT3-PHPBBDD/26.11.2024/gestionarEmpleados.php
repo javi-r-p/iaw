@@ -37,7 +37,7 @@
 				global $conexion;
 				$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
 				if (mysqli_num_rows($consulta) == 0) {
-					echo "<h3>No existe ningún empleado con el código " . $codigoEmpleado . "</h3>\n";
+					echo "<h3>No existe ningún empleado con el identificador " . $codigoEmpleado . "</h3>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar'>Ejecutar otra consulta</a>\n";
 				} else {
 					$empleado = mysqli_fetch_array($consulta);
@@ -79,7 +79,7 @@
 				$codigoEmpleado = mysqli_query($conexion, "SELECT CodigoEmpleado FROM Empleados ORDER BY CodigoEmpleado DESC LIMIT 1");
 				$ultimoCodigoEmpleado = mysqli_fetch_array($codigoEmpleado);
 				$ultimoCodigoEmpleado = $ultimoCodigoEmpleado['CodigoEmpleado'] + 1;
-				echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $ultimoCodigoEmpleado . "' min='" . $ultimoCodigoEmpleado . "' readonly><br>\n";
+				echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $ultimoCodigoEmpleado . "' readonly><br>\n";
 				mysqli_free_result($codigoEmpleado);
 				echo "<label>Nombre completo: </label><input type='text' name='nombre' required><br>\n";
 				echo "<label>Extensión: </label><input type='text' name='extension' required><br>\n";
@@ -139,10 +139,7 @@
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 					break;
 			}
-			if (isset($_GET['verDatos'])) {
-				consultar($_GET['codigoEmpleado']);
-			}
-			} else {
+		} else {
 	?>
 		<form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
 			<input type="radio" name="accion" value="consultar" required><label>Consultar</label><br>
@@ -152,6 +149,9 @@
 			<input type="submit" name="inicio" value="Iniciar">
 		</form>
 	<?php
+		}
+		if (isset($_GET['verDatos'])) {
+			consultar($_GET['codigoEmpleado']);
 		}
 		mysqli_close($conexion);
 	?>
