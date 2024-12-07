@@ -89,7 +89,7 @@
 						echo "<label>Extensión: </label><input type='text' name='extension' required><br>\n";
 						echo "<label>Correo electrónico: </label><input type='text' name='email' required><br>\n";
 						echo "<label>Oficina: </label><select name='oficina' required><br>\n";
-						$oficinas = mysqli_query($conexion, "SELECT CodigoOficina CONCAT(Ciudad, ' ', Pais) AS Ubicacion FROM Oficinas");
+						$oficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ' ', Pais) AS Ubicacion FROM Oficinas");
 						while ($oficina = mysqli_fetch_array($oficinas)) {
 							echo "<option value='" . $oficina['CodigoOficina'] . "'>" . $oficina['CodigoOficina'] . " - " . $oficina['Ubicacion'] . "</option>\n";
 						}
