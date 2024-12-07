@@ -115,6 +115,9 @@
 					echo "<br>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 				}
+				if (isset($_GET['verDatos'])) {
+					consultar($_GET['codigoEmpleado']);
+				}
 			}
 			switch ($accion) {
 				case "consultar":
@@ -138,9 +141,6 @@
 					echo "<h2>La opción que has seleccionado aún no está disponible.</h2>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 					break;
-			}
-			if (isset($_GET['verDatos'])) {
-				consultar($_GET['codigoEmpleado']);
 			}
 		} else {
 	?>
