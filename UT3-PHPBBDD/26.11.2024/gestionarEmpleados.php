@@ -38,7 +38,6 @@
 				$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
 				if (mysqli_num_rows($consulta) == 0) {
 					echo "<h3>No existe ningún empleado con el código " . $codigoEmpleado . "</h3>\n";
-					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar'>Ejecutar otra consulta</a>\n";
 				} else {
 					$empleado = mysqli_fetch_array($consulta);
