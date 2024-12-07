@@ -103,6 +103,8 @@
 				echo "<input type='submit' name='insertarEmpleado' value='Insertar'>\n";
 				echo "<input type='reset' value='Borrar campos'>\n";
 				echo "</form>\n";
+				echo "<hr>\n";
+				echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 				if (isset($_POST['insertarEmpleado'])) {
 					$nombre = $_POST['nombre'];
 					$nombreCompleto = explode (" ", $nombre);
