@@ -75,7 +75,7 @@
 						echo "<hr>";
 						echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>";
 					} else {
-						echo "<form action='" . $_SERVER['PHP_SELF'] . "&accion=insertar&inicio=iniciar" . "' method='POST'>\n";
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=iniciar" . "' method='POST'>\n";
 						echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $_POST['codigoEmpleado'] . "'><br>\n";
 						echo "<label>Nombre completo: </label><input type='text' name='nombre'><br>\n";
 						echo "<label>Extensión: </label><input type='text' name='extension'><br>\n";
