@@ -67,7 +67,7 @@
 			}
 			function insertar () {
 				global $conexion;
-				if (isset($_GET['iniciarInsercion'])) {
+				if (isset($_POST['iniciarInsercion'])) {
 					echo "<h2>Creación de un empleado\n</h2>";
 					$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE codigoEmpleado = " . $_POST['codigoEmpleado'] . ";");
 					if (mysqli_num_rows($consulta) == 1) {
