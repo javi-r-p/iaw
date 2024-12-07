@@ -80,7 +80,7 @@
 				$codigoEmpleado = mysqli_query($conexion, "SELECT CodigoEmpleado FROM Empleados ORDER BY CodigoEmpleado DESC LIMIT 1");
 				$ultimoCodigoEmpleado = mysqli_fetch_array($codigoEmpleado);
 				$ultimoCodigoEmpleado = $ultimoCodigoEmpleado['CodigoEmpleado'] + 1;
-				echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $ultimoCodigoEmpleado . "' min='" . $ultimoCodigoEmpleado . "'><br>\n";
+				echo "<label>Identificador: </label><input type='number' name='codigoEmpleado' value='" . $ultimoCodigoEmpleado . "' min='" . $ultimoCodigoEmpleado . "' readonly><br>\n";
 				mysqli_free_result($codigoEmpleado);
 				echo "<label>Nombre completo: </label><input type='text' name='nombre' required><br>\n";
 				echo "<label>Extensión: </label><input type='text' name='extension' required><br>\n";
