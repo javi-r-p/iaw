@@ -123,7 +123,7 @@
 						consultar ($_POST['codigoEmpleado']);
 					} else {
 						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar' method='POST'>\n";
-						echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' value='" . $_GET['codigoEmpleado'] . "' required>\n";
+						echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' required>\n";
 						echo "<input type='submit' name='ejecutarConsulta' value='Consultar'>\n";
 						echo "</form>\n";
 					}
