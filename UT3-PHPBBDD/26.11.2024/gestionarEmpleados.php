@@ -145,7 +145,7 @@
 					echo "<label>Supervisor: </label>\n<select name='jefe' required><br>\n";
 					$supervisores = mysqli_query($conexion, "SELECT CodigoJefe, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Empleados");
 					while ($supervisor = mysqli_fetch_array($supervisores)) {
-						if ($supervisor['CodigoEmpleado'] == $empleado['CodigoJefe']) {
+						if ($empleado['CodigoEmpleado'] == $empleado['CodigoJefe']) {
 							echo "<option value='" . $supervisor['CodigoJefe'] ."' selected>" . $supervisor['NombreCompleto'] . "</option>\n";
 						} else {
 							echo "<option value='" . $supervisor['CodigoJefe'] ."'>" . $supervisor['NombreCompleto'] . "</option>\n";
