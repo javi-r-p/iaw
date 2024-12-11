@@ -6,6 +6,13 @@
 	body {
 		font-family: Arial;
 	}
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	th, td {
+		padding: 10px;
+	}
 </style>
 <?php
 	$conexion = mysqli_connect('localhost', 'modf', 'modf', 'jardineria');
@@ -32,7 +39,7 @@
 			echo "</tr>\n";
 			echo "<tr>\n";
 			echo "<td>" . $pedido['CodigoPedido'] . "</td>\n";
-			echo "<td>" . $pedido['Fecha'] . "</td>\n";
+			echo "<td>" . $pedido['FechaPedido'] . "</td>\n";
 			echo "<td>" . $pedido['Estado'] . "</td>\n";
 			echo "</tr>\n";
 			echo "</table>\n";
