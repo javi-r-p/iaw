@@ -19,7 +19,7 @@
 	if (isset($_GET['pag'])) {
 		$pag = $_GET['pag'];
 	} else {
-		$pag = 0;
+		$pag = 1;
 	}
 	$numFilasPag = 1;
 ?>
@@ -30,6 +30,7 @@
 	$pedidos = mysqli_query ($conexion, "SELECT * FROM Pedidos LIMIT $filaIni, $numFilasPag");
 	if (mysqli_num_rows($pedidos) > 0) {
 		while ($pedido = mysqli_fetch_array($pedidos)) {
+			$codigoPedido = $pedido['CodigoPedido'];
 			echo "<table>\n";
 			echo "<caption>Datos del pedido</caption>\n";
 			echo "<tr>\n";
@@ -59,7 +60,7 @@
 			echo "<a href='" . $_SERVER['PHP_SELF'] . "?pag=" . $pagSig . "'>Siguiente pedido</a>\n";
 		}
 
-		$productos = mysqli_query ($conexion, "SELECT Productos.CodigoProducto, Cantidad, PrecioUnidad, Nombre, Gama FROM DetallePedidos INNER JOIN Productos ON DetallePedidos .CodigoProducto = Productos.CodigoProducto WHERE CodigoPedido = " . $pedido['CodigoPedido'] . ";");
+		$productos = mysqli_query ($conexion, "SELECT Productos.CodigoProducto, Cantidad, PrecioUnidad, Nombre, Gama FROM DetallePedidos INNER JOIN Productos ON DetallePedidos .CodigoProducto = Productos.CodigoProducto WHERE CodigoPedido = $codigoPedido");
 
 		echo "<table>\n";
 		echo "<caption>Productos</caption>\n";
