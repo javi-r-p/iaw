@@ -175,7 +175,7 @@
 					if (isset($_POST['buscarEmpleado'])) {
 						modificar ($_POST['codigoEmpleado']);
 					} else {
-						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=consultar&inicio=Iniciar' method='POST'>\n";
+						echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=modificar&inicio=Iniciar' method='POST'>\n";
 						echo "<label>Código del empleado: </label><input type='number' name='codigoEmpleado' required>\n";
 						echo "<input type='submit' name='buscarEmpleado' value='Consultar'>\n";
 						echo "</form>\n";
