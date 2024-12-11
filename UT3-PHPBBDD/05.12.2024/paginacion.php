@@ -59,7 +59,7 @@
 			echo "<a href='" . $_SERVER['PHP_SELF'] . "?pag=" . $pagSig . "'>Siguiente pedido</a>\n";
 		}
 
-		$productos = mysqli_query ($conexion, "SELECT * Productos.CodigoProducto, Cantidad, PrecioUnidad, Nombre, Gama FROM DetallePedidos INNER JOIN Productos ON DetallePedidos .CodigoProducto = Productos.CodigoProducto WHERE CodigoPedido = " . $pedido['CodigoPedido'] . ";");
+		$productos = mysqli_query ($conexion, "SELECT Productos.CodigoProducto, Cantidad, PrecioUnidad, Nombre, Gama FROM DetallePedidos INNER JOIN Productos ON DetallePedidos .CodigoProducto = Productos.CodigoProducto WHERE CodigoPedido = " . $pedido['CodigoPedido'] . ";");
 
 		echo "<table>\n";
 		echo "<caption>Productos</caption>\n";
