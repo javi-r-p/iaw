@@ -118,7 +118,7 @@
 
 		echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='GET'>\n";
 		echo "<select name='pag' required>";
-		while ($pag < $pagTotal) {
+		while ($pagTotal) {
 			echo "<option value='" . $pag . "'>Página " . $pag . "</option>\n";
 		}
 		echo "</select>\n";
