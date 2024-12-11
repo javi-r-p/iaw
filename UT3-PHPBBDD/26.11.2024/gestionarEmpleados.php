@@ -68,43 +68,6 @@
 			global $conexion;
 			echo "<h2>Creación de un empleado\n</h2>";
 			echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=Iniciar" . "' method='POST'>\n";
-			$codigoEmpleado = mysqli_query($conexion, "SELECT CodigoEmpleado FROM Empleados ORDER BY CodigoEmpleado DESC LIMIT 1");
-			$ultimoCodigoEmpleado = mysqli_fetch_array($codigoEmpleado);
-			$ultimoCodigoEmpleado = $ultimoCodigoEmpleado['CodigoEmpleado'] + 1;
-			echo "<label>Identificador: </label>\n<input type='number' name='codigoEmpleado' value='" . $ultimoCodigoEmpleado . "' readonly>\n<br>\n";
-			mysqli_free_result($codigoEmpleado);
-			echo "<label>Nombre completo: </label>\n<input type='text' name='nombre' required>\n<br>\n";
-			echo "<label>Extensión: </label>\n<input type='text' name='extension' required>\n<br>\n";
-			echo "<label>Correo electrónico: </label>\n<input type='text' name='email' required><br>\n";
-			echo "<label>Oficina: </label>\n<select name='oficina' required>\n<br>\n";
-			$oficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ' ', Pais) AS Ubicacion FROM Oficinas");
-			global $empleado;
-			while ($oficina = mysqli_fetch_array($oficinas)) {
-				if ($oficina['CodigoOficina'] == $empleado['CodigoOficina']) {
-					echo "<option value='" . $oficina['CodigoOficina'] . "' selected>" . $oficina['CodigoOficina'] . " - " . $oficina['Ubicacion'] . "</option>\n";
-				} else {
-					echo "<option value='" . $oficina['CodigoOficina'] . "'>" . $oficina['CodigoOficina'] . " - " . $oficina['Ubicacion'] . "</option>\n";
-				}
-			}
-			mysqli_free_result($oficinas);
-			echo "</select>\n<br>\n";
-			echo "<label>Supervisor: </label>\n<select name='jefe' required><br>\n";
-			$supervisores = mysqli_query($conexion, "SELECT CodigoJefe, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Empleados");
-			while ($supervisor = mysqli_fetch_array($supervisores)) {
-				if ($supervisor['CodigoEmpleado'] == $empleado['CodigoJefe']) {
-					echo "<option value='" . $supervisor['CodigoJefe'] ."' selected>" . $supervisor['NombreCompleto'] . "</option>\n";
-				} else {
-					echo "<option value='" . $supervisor['CodigoJefe'] ."'>" . $supervisor['NombreCompleto'] . "</option>\n";
-				}
-			}
-			mysqli_free_result($supervisores);
-			echo "</select>\n<br>\n";
-			echo "<label>Puesto: </label>\n<input type='text' name='puesto'>\n<br>\n";
-			echo "<input type='submit' name='insertarEmpleado' value='Insertar'>\n";
-			echo "<input type='reset' value='Borrar campos'>\n";
-			echo "</form>\n";
-			echo "<hr>\n";
-			echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 			if (isset($_POST['insertarEmpleado'])) {
 				$nombre = $_POST['nombre'];
 				$nombreCompleto = explode (" ", $nombre);
@@ -115,20 +78,15 @@
 				echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=insertar&inicio=Iniciar'>Insertar otro empleado</a>\n";
 				echo "<br>\n";
 				echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
-			}
-		}
-		function modificar ($codigoEmpleado) {
-			global $conexion;
-			$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
-			if (mysqli_num_rows($consulta) == 0) {
-				echo "<h2>No existe el empleado con código " .$codigoEmpleado . ".</h2>\n";
 			} else {
-				$empleado = mysqli_fetch_Array($consulta);
-				echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
-				$nombreCompleto = $empleado['Nombre'] . " " . $empleado['Apellido1'] . " " . $empleado['Apellido2'];
-				echo "<label>Nombre completo: </label>\n<input type='text' name='nombre' value='" . $nombreCompleto . "'>\n<br>\n";
-				echo "<label>Extensión: </label>\n<input type='text' name='nombre' value='" . $empleado['Extension'] . "'>\n<br>\n";
-				echo "<label>Correo electrónico: </label>\n<input type='text' name='nombre' value='" . $empleado['Email'] . "'>\n<br>\n";
+				$codigoEmpleado = mysqli_query($conexion, "SELECT CodigoEmpleado FROM Empleados ORDER BY CodigoEmpleado DESC LIMIT 1");
+				$ultimoCodigoEmpleado = mysqli_fetch_array($codigoEmpleado);
+				$ultimoCodigoEmpleado = $ultimoCodigoEmpleado['CodigoEmpleado'] + 1;
+				echo "<label>Identificador: </label>\n<input type='number' name='codigoEmpleado' value='" . $ultimoCodigoEmpleado . "' readonly>\n<br>\n";
+				mysqli_free_result($codigoEmpleado);
+				echo "<label>Nombre completo: </label>\n<input type='text' name='nombre' required>\n<br>\n";
+				echo "<label>Extensión: </label>\n<input type='text' name='extension' required>\n<br>\n";
+				echo "<label>Correo electrónico: </label>\n<input type='text' name='email' required><br>\n";
 				echo "<label>Oficina: </label>\n<select name='oficina' required>\n<br>\n";
 				$oficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ' ', Pais) AS Ubicacion FROM Oficinas");
 				while ($oficina = mysqli_fetch_array($oficinas)) {
@@ -142,16 +100,66 @@
 					echo "<option value='" . $supervisor['CodigoJefe'] ."'>" . $supervisor['NombreCompleto'] . "</option>\n";
 				}
 				mysqli_free_result($supervisores);
-				echo "<label>Puesto: </label>\n<input type='text' name='puesto' value='" . $empleado['Puesto'] . "'>\n<br>\n";
-				echo "<input type='submit' name='modificarEmpleado' value='Modificar'>\n";
-				echo "<input type='reset' value='Borrar campos'>\n";
 				echo "</select>\n<br>\n";
+				echo "<label>Puesto: </label>\n<input type='text' name='puesto'>\n<br>\n";
+				echo "<input type='submit' name='insertarEmpleado' value='Insertar'>\n";
+				echo "<input type='reset' value='Borrar campos'>\n";
 				echo "</form>\n";
-				echo "<hr>\n";
-				echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
-				/* if (isset($_POST['modificarEmpleado'])) {
-
-				} */
+			}
+		}
+		function modificar ($codigoEmpleado) {
+			global $conexion;
+			$consulta = mysqli_query($conexion, "SELECT * FROM Empleados WHERE CodigoEmpleado = $codigoEmpleado");
+			if (mysqli_num_rows($consulta) == 0) {
+				echo "<h2>No existe el empleado con código " .$codigoEmpleado . ".</h2>\n";
+			} else {
+				if (isset($_POST['modificarEmpleado'])) {
+					$nombre = $_POST['nombre'];
+					$nombreCompleto = explode (" ", $nombre);
+					mysqli_query ($conexion, "UPDATE Empleados SET Nombre = '" . $nombreCompleto[0] . "', Apellido1 = '" . $nombreCompleto[1] . "', Apellido2 = '" . $nombreCompleto[2] . "', Extension = '" . $_POST['extension'] . "', Email = '" . $_POST['email'] . "', CodigoJefe = " . $_POST['jefe'] . ", CodigoOficina = '" . $_POST['oficina'] . "', Puesto = '" . $_POST['puesto'] . "' WHERE CodigoEmpleado = $codigoEmpleado");
+					echo "<h3>Empleado modificado</h3>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "?verDatos=si&codigoEmpleado=" . $_POST['codigoEmpleado'] . "'>Ver los datos del empleado " . $_POST['codigoEmpleado'] . "</a>\n";
+					echo "<hr>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=modificar&inicio=Iniciar'>Modificar otro empleado</a>\n";
+					echo "<br>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
+				} else {
+					$empleado = mysqli_fetch_Array($consulta);
+					echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
+					echo "<label>Identificador: </label>\n<input type='number' name='codigoEmpleado' value='" . $codigoEmpleado . "' readonly>\n<br>\n";
+					$nombreCompleto = $empleado['Nombre'] . " " . $empleado['Apellido1'] . " " . $empleado['Apellido2'];
+					echo "<label>Nombre completo: </label>\n<input type='text' name='nombre' value='" . $nombreCompleto . "'>\n<br>\n";
+					echo "<label>Extensión: </label>\n<input type='text' name='nombre' value='" . $empleado['Extension'] . "'>\n<br>\n";
+					echo "<label>Correo electrónico: </label>\n<input type='text' name='email' value='" . $empleado['Email'] . "'>\n<br>\n";
+					echo "<label>Oficina: </label>\n<select name='oficina' required>\n<br>\n";
+					$oficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ' ', Pais) AS Ubicacion FROM Oficinas");
+					while ($oficina = mysqli_fetch_array($oficinas)) {
+						if ($oficina['CodigoOficina'] == $empleado['CodigoOficina']) {
+							echo "<option value='" . $oficina['CodigoOficina'] . "' selected>" . $oficina['CodigoOficina'] . " - " . $oficina['Ubicacion'] . "</option>\n";
+						} else {
+							echo "<option value='" . $oficina['CodigoOficina'] . "'>" . $oficina['CodigoOficina'] . " - " . $oficina['Ubicacion'] . "</option>\n";
+						}
+					}
+					mysqli_free_result($oficinas);
+					echo "</select>\n<br>\n";
+					echo "<label>Supervisor: </label>\n<select name='jefe' required><br>\n";
+					$supervisores = mysqli_query($conexion, "SELECT CodigoJefe, CONCAT(Nombre, ' ', Apellido1, ' ', Apellido2) AS NombreCompleto FROM Empleados");
+					while ($supervisor = mysqli_fetch_array($supervisores)) {
+						if ($supervisor['CodigoEmpleado'] == $empleado['CodigoJefe']) {
+							echo "<option value='" . $supervisor['CodigoJefe'] ."' selected>" . $supervisor['NombreCompleto'] . "</option>\n";
+						} else {
+							echo "<option value='" . $supervisor['CodigoJefe'] ."'>" . $supervisor['NombreCompleto'] . "</option>\n";
+						}
+					}
+					mysqli_free_result($supervisores);
+					echo "<label>Puesto: </label>\n<input type='text' name='puesto' value='" . $empleado['Puesto'] . "'>\n<br>\n";
+					echo "<input type='submit' name='modificarEmpleado' value='Modificar'>\n";
+					echo "<input type='reset' value='Borrar campos'>\n";
+					echo "</select>\n<br>\n";
+					echo "</form>\n";
+					echo "<hr>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
+				}
 			}
 		}
 	?>
