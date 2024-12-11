@@ -116,15 +116,6 @@
 		echo "<h2>Total: " . $total . "€</h2>\n";
 		echo "<hr>\n";
 
-		echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='GET'>\n";
-		echo "<select name='pag' required>";
-		while ($pag <= $pagTotal) {
-			echo "<option value='" . $pag . "'>Página " . $pag . "</option>\n";
-		}
-		echo "</select>\n";
-		echo "<input type='submit' name='navegar' value='Ir'>\n";
-		echo "</form>\n";
-
 		//Librerar los resultados del número de pedidos y los detalles del pedido
 		mysqli_free_result($numPedidos);
 		mysqli_free_result($productos);
