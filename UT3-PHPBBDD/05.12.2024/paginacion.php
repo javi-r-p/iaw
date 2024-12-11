@@ -58,6 +58,7 @@
 			echo "</tr>\n";
 		}
 		echo "</table>\n";
+		echo "<hr>\n";
 
 		//Enlace para ir a la página anterior
 		if ($pag > 0) {
@@ -76,6 +77,7 @@
 			$pagSig = $pag +1;
 			echo "<a href='" . $_SERVER['PHP_SELF'] . "?pag=" . $pagSig . "'>Siguiente pedido</a>\n";
 		}
+		echo "<hr>\n";
 
 		//Consultar los detalles del pedido
 		$productos = mysqli_query ($conexion, "SELECT Productos.CodigoProducto, Cantidad, PrecioUnidad, Nombre, Gama FROM DetallePedidos INNER JOIN Productos ON DetallePedidos .CodigoProducto = Productos.CodigoProducto WHERE CodigoPedido = $codigoPedido");
@@ -112,6 +114,16 @@
 
 		//Mostrar el importe total del pedido
 		echo "<h2>Total: " . $total . "€</h2>\n";
+		echo "<hr>\n";
+
+		echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='GET'>\n";
+		echo "<select name='pag' required>";
+		while ($pag < $pagTotal) {
+			echo "<option value='" . $pag . "'>Página " . $pag . "</option>\n";
+		}
+		echo "</select>\n";
+		echo "<input type='submit' name='navegar' value='Ir'>\n";
+		echo "</form>\n";
 
 		//Librerar los resultados del número de pedidos y los detalles del pedido
 		mysqli_free_result($numPedidos);
@@ -124,7 +136,7 @@
 
 	//Liberar los resultados del pedido
 	mysqli_free_result($pedidos);
-	
+
 	//Cerrar la conexión con la base de datos
 	mysqli_close($conexion);
 ?>
