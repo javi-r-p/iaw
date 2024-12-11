@@ -21,7 +21,7 @@
 <?php
 	$filaIni = $pag * $numFilasPag;
 	$pedidos = mysqli_query ($conexion, "SELECT * FROM Pedidos LIMIT $filaIni, $numFilasPag");
-	if (mysqli_num_rows($pedidos) == 0) {
+	if (mysqli_num_rows($pedidos) > 0) {
 		while ($pedido = mysqli_fetch_array($pedidos)) {
 			echo "<table>\n";
 			echo "<caption>Datos del pedido</caption>\n";
