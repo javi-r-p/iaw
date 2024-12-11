@@ -120,12 +120,12 @@
 					echo "<h3>Empleado modificado</h3>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "?verDatos=si&codigoEmpleado=" . $_POST['codigoEmpleado'] . "'>Ver los datos del empleado " . $_POST['codigoEmpleado'] . "</a>\n";
 					echo "<hr>\n";
-					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=modificar&inicio=Iniciar'>Modificar otro empleado</a>\n";
+					echo "<a href='" . $_SERVER['PHP_SELF'] . "?accion=modificar&inicio=iniciar'>Modificar otro empleado</a>\n";
 					echo "<br>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 				} else {
 					$empleado = mysqli_fetch_Array($consulta);
-					echo "<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n";
+					echo "<form action='" . $_SERVER['PHP_SELF'] . "?accion=modificar&inicio=iniciar' method='POST'>\n";
 					echo "<label>Identificador: </label>\n<input type='number' name='codigoEmpleado' value='" . $codigoEmpleado . "' readonly>\n<br>\n";
 					$nombreCompleto = $empleado['Nombre'] . " " . $empleado['Apellido1'] . " " . $empleado['Apellido2'];
 					echo "<label>Nombre completo: </label>\n<input type='text' name='nombre' value='" . $nombreCompleto . "'>\n<br>\n";
