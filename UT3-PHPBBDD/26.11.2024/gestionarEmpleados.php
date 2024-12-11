@@ -193,9 +193,6 @@
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
 					break;
 			}
-			if (isset($_GET['verDatos'])) {
-				consultar($_GET['codigoEmpleado']);
-			}
 		} else {
 	?>
 		<form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">
@@ -206,6 +203,9 @@
 			<input type="submit" name="inicio" value="Iniciar">
 		</form>
 	<?php
+		}
+		if (isset($_GET['verDatos'])) {
+			consultar($_GET['codigoEmpleado']);
 		}
 		mysqli_close($conexion);
 	?>
