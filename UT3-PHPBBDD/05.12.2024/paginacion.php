@@ -19,7 +19,7 @@
 	if (isset($_GET['pag'])) {
 		$pag = $_GET['pag'];
 	} else {
-		$pag = 1;
+		$pag = 0;
 	}
 	$numFilasPag = 1;
 ?>
@@ -46,7 +46,7 @@
 			echo "</table>\n";
 		}
 
-		if ($pag > 1) {
+		if ($pag > 0) {
 			$pagAnt = $pag -1;
 			echo "<a href='" . $_SERVER['PHP_SELF'] . "?pag=" . $pagAnt . "'>Pedido anterior</a>\n";
 		}
