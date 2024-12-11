@@ -152,10 +152,10 @@
 						}
 					}
 					mysqli_free_result($supervisores);
+					echo "</select>\n<br>\n";
 					echo "<label>Puesto: </label>\n<input type='text' name='puesto' value='" . $empleado['Puesto'] . "'>\n<br>\n";
 					echo "<input type='submit' name='modificarEmpleado' value='Modificar'>\n";
 					echo "<input type='reset' value='Borrar campos'>\n";
-					echo "</select>\n<br>\n";
 					echo "</form>\n";
 					echo "<hr>\n";
 					echo "<a href='" . $_SERVER['PHP_SELF'] . "'>Volver al inicio</a>\n";
