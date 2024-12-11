@@ -72,13 +72,14 @@
 		echo "<th>Precio por unidad</th>\n";
 		echo "<th>Subtotal</th>\n";
 		echo "</tr>\n";
+		$total = 0;
 		while ($producto = mysqli_fetch_array($productos)) {
 			echo "<tr>\n";
 			echo "<td>" . $producto['CodigoProducto'] . "</td>\n";
 			echo "<td>" . $producto['Nombre'] . "</td>\n";
 			echo "<td>" . $producto['Gama'] . "</td>\n";
 			echo "<td>" . $producto['Cantidad'] . "</td>\n";
-			echo "<td>" . $producto['PrecioUnidad'] . "</td>\n";
+			echo "<td>" . $producto['PrecioUnidad'] . "€</td>\n";
 			echo "<td>" . $producto['Cantidad'] * $producto['PrecioUnidad'] . "€</td>\n";
 			echo "</tr>\n";
 			$total += $producto['Cantidad'] * $producto['PrecioUnidad'];
