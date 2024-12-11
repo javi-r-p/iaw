@@ -131,7 +131,7 @@
 				$nombreCompleto = $empleado['Nombre'] . " " . $empleado['Apellido1'] . " " . $empleado['Apellido2'];
 				echo "<label>Nombre completo: </label>\n<input type='text' name='nombre' value='" . $nombreCompleto . "'>\n<br>\n";
 				echo "<label>Extensión: </label>\n<input type='text' name='nombre' value='" . $empleado['Extension'] . "'>\n<br>\n";
-				echo "<label>Correo electrónico: </label>\n<input type='text' name='nombre' value='" . $empleado['Email'] . ">\n<br>\n";
+				echo "<label>Correo electrónico: </label>\n<input type='text' name='nombre' value='" . $empleado['Email'] . "'>\n<br>\n";
 				echo "<label>Oficina: </label>\n<select name='oficina' required>\n<br>\n";
 				$oficinas = mysqli_query($conexion, "SELECT CodigoOficina, CONCAT(Ciudad, ' ', Pais) AS Ubicacion FROM Oficinas");
 				while ($oficina = mysqli_fetch_array($oficinas)) {
