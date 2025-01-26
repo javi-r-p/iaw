@@ -1,7 +1,4 @@
 #!/bin/bash
-#read -p "Nombre del nuevo archivo: " -a nombre
-#read -p "Introduce la fecha de hoy: " -a fecha
-#fecha=$(date +%d.%m.%Y);
 directorio=$(pwd);
 cp /var/www/html/plantilla.php $directorio/$1;
 nano $directorio/$1;
