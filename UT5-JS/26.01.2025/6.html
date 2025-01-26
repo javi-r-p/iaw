@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Ejercicio 5</title>
+    <title>Ejercicio 6</title>
     <meta charset="UTF-8">
     <style>
         body {
@@ -19,9 +19,13 @@
     <script>
         if (v = prompt("Introduce un número:")) {
             var j = 1;
+        } else {
+            var j = 0;
         }
         if (w = prompt("Introduce una cadena de caracteres:")) {
             var k = 1;
+        } else {
+            var k = 0;
         }
         if (j == 1 && k == 1) {
             var i = 1;
@@ -29,6 +33,8 @@
                 document.write(i + ". " + w + "<br>");
                 i++;
             }
+        } else {
+            document.write("El usuario canceló la acción.")
         }
     </script>
 </body>
