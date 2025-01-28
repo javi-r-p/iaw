@@ -16,20 +16,25 @@
     </style>
 </head>
 <body>
+    <h1>Cálculo de la letra del Documento Nacional de Identidad</h1>
     <script>
-        let numero = prompt("Introduce el número de tu DNI sin la letra:", 12345678);
-        let letra = prompt("Introduce la letra de tu DNI:", "A");
+        let numero = prompt("Introduce el número de tu DNI sin la letra:");
+        let letra = prompt("Introduce la letra de tu DNI:");
         if (numero < 0 || numero > 99999999) {
             alert("El número que has introducido no es válido.");
         }
-        let letras = ["T", "R", "W", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E", "T"];
-        let calculo = numero % 23;
+        let letras = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+        let calculo = (numero % 23);
         let letraCalculada = letras[calculo];
         if (letraCalculada != letra) {
             document.write("La letra de tu DNI es incorrecta");
+            document.write("<br>");
+            document.write("La letra que has introducido es la " + letra + ", y la letra calculada es la " + letraCalculada);
         } else {
             document.write("La letra de tu DNI es correcta");
         }
+        document.write("<br>");
+        document.write("DNI completo (con la letra calculada): " + numero + letraCalculada)
     </script>
 </body>
 </html>

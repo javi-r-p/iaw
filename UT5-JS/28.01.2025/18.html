@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Ejercicio 18</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function italica(texto) {
+            document.write(texto.italics().toLowerCase());
+        }
+        function negrita(texto) {
+            document.write(texto.bold().toUpperCase());
+        }
+        italica("Me gusta IAW");
+        document.write("<br>");
+        negrita("Me gusta iaw");
+    </script>
+</body>
+</html>
