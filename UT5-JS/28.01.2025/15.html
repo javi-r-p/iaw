@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Ejercicio 15</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let numero = prompt("Introduce el número de tu DNI sin la letra:", 12345678);
+        let letra = prompt("Introduce la letra de tu DNI:", "A");
+        if (numero < 0 || numero > 99999999) {
+            alert("El número que has introducido no es válido.");
+        }
+        let letras = ["T", "R", "W", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E", "T"];
+        let calculo = numero % 23;
+        let letraCalculada = letras[calculo];
+        if (letraCalculada != letra) {
+            document.write("La letra de tu DNI es incorrecta");
+        } else {
+            document.write("La letra de tu DNI es correcta");
+        }
+    </script>
+</body>
+</html>
