@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Ejercicio 14</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var v = prompt("Introduce un número");
+        for(i = 1; i <= v; i++) {
+            for(j = i; j < v; j++) {
+                document.write("&nbsp;&nbsp;&nbsp;&nbsp;");
+            }
+            for(j = i; j > 1; j--) {
+                document.write(j);
+                document.write(", ");
+            }
+            for(j = 1; j <= i; j++) {
+                document.write(j);
+                if (j < i) {
+                    document.write(", ");
+                }
+            }
+            document.write("<br>");
+        }
+    </script>
+</body>
+</html>

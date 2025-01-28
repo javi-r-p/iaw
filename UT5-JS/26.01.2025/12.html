@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Ejercicio 10</title>
+    <title>Ejercicio 12</title>
     <meta charset="UTF-8">
     <style>
         body {
@@ -16,18 +16,17 @@
     </style>
 </head>
 <body>
-    <table>
-        <script>
-            var i = 1;
-            while(i<=30) {
-                document.write("<tr>");
-                for(j=1; j<=10; j++) {
-                    document.write("<td>" + i + "</td>");
-                    i++;
+    <script>
+        for(i=1; i<=5; i++) {
+            for(j=1; j<=i; j++) {
+                if(j<i) {
+                    document.write(j + ", ");
+                } else {
+                    document.write(j);
                 }
-                document.write("</tr>");
             }
-        </script>
-    </table>
+            document.write("<br><br>");
+        }
+    </script>
 </body>
 </html>
