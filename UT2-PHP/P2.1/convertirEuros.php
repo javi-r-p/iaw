@@ -3,8 +3,8 @@
 		<title>Conversión de divisas</title>
 		<meta charset="UTF-8">
 		<?php
-			$divisas = array("dolar"=>"1.11", "libra"=>"0.83", "rublo"=>"118.44", "peso"=>"22.97", "rupia"=>"84.26", "franco"=>"1.02", "dinar"=>"157.78", 
-			"lira"=>"15.69");
+			$divisas = array("dolar"=>1.11, "libra"=>0.83, "rublo"=>118.44, "peso"=>22.97, "rupia"=>84.26, "franco"=>1.02, "dinar"=>157.78, 
+			"lira"=>15.69);
 			function conversion($cantidad, $mon) {
 				global $divisas;
 				global $divisa;
@@ -19,8 +19,13 @@
 	</head>
 	<body>
 		<?php
+			$eurosVacio = false;
 			if (isset($_GET['enviar'])) {
+				if (empty($_GET['euros'])) {
+					$eurosVacio = true;
+				}
 				$euros = $_GET['euros'];
+				$euros = floatval($euros);
 				$divisa = $_GET['divisa'];
 				echo "<h1>RESULTADO DE LA CONVERSIÓN</h1>\n";
 				$resultado = conversion($euros, $divisa);
@@ -37,10 +42,15 @@
 				}
 				echo "</table>\n";
 				echo "<p><a href=" . $_SERVER['PHP_SELF'] . ">Volver al formulario</a></p>";
-			} else {
+			}
+			if (empty($_GET['euros']) or ($eurosVacio)) {
 				echo '<form method="GET" action="' . $_SERVER['PHP_SELF'] . '">' . "\n";
 				echo "<label>CANTIDAD EN EUROS:</label>\n";
 				echo '<input type="text" name="euros">' . "\n";
+				if ($eurosVacio) {
+					echo "<span style='color: red;'>ERROR</span>: el nombre está vacío";
+					unset($_GET);
+				}
 				echo "<br>\n";
 				echo '<select name="divisa">' . "\n";
 				echo '<option value="dolar">DOLAR' . "\n";

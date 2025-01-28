@@ -101,7 +101,7 @@
 		//Mostrar todos los productos del pedido con su cantidad, precio por unidad y subtotal
 		while ($producto = mysqli_fetch_array($productos)) {
 			echo "<tr>\n";
-			echo "<td>" . $producto['CodigoProducto'] . "</td>\n";
+			echo "<td><a href='producto.php?codigoProducto=" . $producto['CodigoProducto'] . "'>" . $producto['CodigoProducto'] . "</a></td>\n";
 			echo "<td>" . $producto['Nombre'] . "</td>\n";
 			echo "<td>" . $producto['Gama'] . "</td>\n";
 			echo "<td>" . $producto['Cantidad'] . "</td>\n";
