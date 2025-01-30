@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Ejercicio 19</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function formatearTexto(texto, negrita, cursiva, capital, tamanio, color) {
+            if(!texto) {
+                alert("No has introducido ninguna cadena de caracteres")
+            } else {
+                if(negrita == 1) {
+                    texto=texto.bold();
+                }
+                if(cursiva == 1) {
+                    texto=texto.italics();
+                }
+                if(capital == "M") {
+                    texto=texto.toUpperCase();
+                }
+                else if(capital == "m") {
+                    texto=texto.toLowerCase();
+                }
+                texto=texto.fontsize(tamanio);
+                texto=texto.fontcolor(color);
+                return texto
+            }
+        }
+        let texto = prompt("¿Qué texto quieres mostrar?")
+        let negrita = prompt("¿Negrita? 0: No, 1: Sí")
+        let cursiva = prompt("¿Cursiva? 0: No, 1: Sí")
+        let capital = prompt("¿En mayúsculas o minúsculas? M: mayúsculas, m: minúsculas")
+        let tamanio = prompt("Indica el tamaño en número")
+        let color = prompt("Indica el color en inglés")
+        document.write(formatearTexto(texto, negrita, cursiva, capital, tamanio, color))
+    </script>
+</body>
+</html>
