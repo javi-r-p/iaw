@@ -15,6 +15,8 @@
         }
         div {
             border: 1px solid black;
+            width: 20%;
+            display: inline-block;
         }
     </style>
 </head>
@@ -29,9 +31,11 @@
     </div>
     <script>
         function intercambiar() {
-            let div1 = document.getElementById("div1").innerHTML
-            let div2 = document.getElementById("div2").innerHTML
-            
+            let div1 = document.getElementById("div1")
+            let div2 = document.getElementById("div2")
+            let tmp = div1.innerHTML
+            div1.innerHTML = div2.innerHTML
+            div2.innerHTML = tmp
         }
     </script>
 </body>
