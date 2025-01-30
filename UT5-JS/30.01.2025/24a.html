@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Ejercicio 24A</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="pic_bulboff.gif" alt="Bombilla" id="imagen" onmouseover="encender()" onmouseleave="apagar()">
+    <script>
+        function encender() {
+            let imagen = document.getElementById("imagen")
+            imagen.setAttribute("src", "pic_bulbon.gif")
+        }
+        function apagar() {
+            let imagen = document.getElementById("imagen")
+            imagen.setAttribute("src", "pic_bulboff.gif")
+        }
+    </script>
+</body>
+</html>
