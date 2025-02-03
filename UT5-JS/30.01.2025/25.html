@@ -20,32 +20,78 @@
         }
     </style>
 </head>
-<body>
-    <button onclick="izquierda()"><</button>
-    <button onclick="arriba()">^</button>
-    <button onclick="abajo()">v</button>
-    <button onclick="derecha()">></button>
-    <div id="capa">
-        <p>Capa que intento mover</p>
-    </div>
+<body>	
     <script>
-        function izquierda() {
-            let capa = document.getElementById("capa")
-            
-            
+        function actualizaPos(){			
+            var posX = document.getElementById("capa1").style.left;
+            var posY = document.getElementById("capa1").style.top; 
+            document.getElementById("capa1").innerHTML = "Pos x: " + posX + "\nPos y: " + posY;
         }
-        function arriba() {
-            let capa = document.getElementById("capa")
+        function mueveDer(){
+            x=parseInt(document.getElementById("capa1").style.left);
+            if ((x+parseInt(document.getElementById("capa1").style.width)) < document.body.offsetWidth)
+            {
+                document.getElementById("capa1").style.left=x+20
+            }
+            else
+            {
+                document.getElementById("capa1").style.left=0;
+            }
+            actualizaPos();
+        }
 
+        function mueveIzq(){
+            x=parseInt(document.getElementById("capa1").style.left);
+            if (x <= 20)
+            {
+                document.getElementById("capa1").style.left=window.innerWidth-parseInt(document.getElementById("capa1").style.width);				
+            }
+            else
+            {
+                document.getElementById("capa1").style.left=x-20;
+            }
+            actualizaPos();
         }
-        function abajo() {
-            let capa = document.getElementById("capa")
+        
+        function mueveArr(){
+            x=parseInt(document.getElementById("capa1").style.top);
+            if (x <= 20)			
+            {
+                document.getElementById("capa1").style.top=window.innerHeight-parseInt(document.getElementById("capa1").style.height);
+            }
+            else
+            {
+                document.getElementById("capa1").style.top=x-20;
+            }
+            actualizaPos();
+        }
 
+        function mueveAbajo(){			
+            x=parseInt(document.getElementById("capa1").style.top);
+            if ((x+parseInt(document.getElementById("capa1").style.height)) < window.innerHeight )					
+            {
+                    document.getElementById("capa1").style.top=x+20;
+            }
+            else
+            {
+                document.getElementById("capa1").style.top=0;
+            }
+            actualizaPos();
         }
-        function derecha() {
-            let capa = document.getElementById("capa")
-            
+        window.onload = function () {
+            document.getElementById("btn1").onclick = mueveDer;
+            document.getElementById("btn2").onclick = mueveIzq;
+            document.getElementById("btn3").onclick = mueveArr;
+            document.getElementById("btn4").onclick = mueveAbajo;		
         }
     </script>
+    <div id='capa1' style="position:absolute; top:200; left:200; background-color:orange; width:100; height:100">
+        Capa que intento mover
+        <br/><br/><br/><br/><br/>
+    </div>
+    <input type="button" id="btn1" value=">"/>
+    <input type="button" id="btn2" value="<"/>
+    <input type="button" id="btn3" value="^"/>
+    <input type="button" id="btn4" value="V"/>
 </body>
 </html>
