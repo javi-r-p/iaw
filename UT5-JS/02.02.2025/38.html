@@ -13,19 +13,67 @@
         th, td {
             padding: 10px;
         }
+        div {
+            border-radius: 5px;
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+            background-color: black;
+        }
     </style>
 </head>
 <body>
     <h1>Calculadora RGB</h1>
     <section id="calculadora">
-        <input type="range" min="0" max="255" id="R">
+        <input type="range" min="0" max="255" id="R" value="0">
+        <span id="muestraRojo"></span>
         <br>
-        <input type="range" min="0" max="255" id="G">
+        <input type="range" min="0" max="255" id="G" value="0">
+        <span id="muestraVerde"></span>
         <br>
-        <input type="range" min="0" max="255" id="B">
+        <input type="range" min="0" max="255" id="B" value="0">
+        <span id="muestraAzul"></span>
+        <br>
+        <h2>Color resultante</h2>
+        <div id="color"></div>
     </section>
     <script>
-        
+        // Captar los deslizadores de cada color
+        var rojo = document.getElementById("R")
+        var verde = document.getElementById("G")
+        var azul = document.getElementById("B")
+
+        // Captar los elementos donde se mostrarán los valores
+        var muestraRojo = document.getElementById("muestraRojo")
+        var muestraVerde = document.getElementById("muestraVerde")
+        var muestraAzul = document.getElementById("muestraAzul")
+
+        // Captar el contenedor donde se mostrará el resultado del cálculo del color
+        var color = document.getElementById("color")
+
+        // Mostrar el valor por defecto de cada uno de los deslizadores
+        muestraRojo.innerHTML = rojo.value
+        muestraVerde.innerHTML = verde.value
+        muestraAzul.innerHTML = azul.value
+
+        // Mostrar el valor de los deslizadores en tiempo real
+        rojo.oninput = function() {
+            muestraRojo.innerHTML = this.value
+            actualizaColor();
+        }
+        verde.oninput = function() {
+            muestraVerde.innerHTML = this.value
+            actualizaColor();
+        }
+        azul.oninput = function() {
+            muestraAzul.innerHTML = this.value
+            actualizaColor();
+        }
+
+        // Mostrar el color calculado a partir de los valores de los deslizadores
+        function actualizaColor() {
+            color.style.backgroundColor = "rgb(" + rojo.value + "," + verde.value + "," + azul.value + ")"
+        }
     </script>
 </body>
 </html>

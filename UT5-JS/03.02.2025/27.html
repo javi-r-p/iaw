@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Ejercicio 27</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+		input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		input[type=number] {
+			-moz-appearance: textfield;
+			appearance: textfield;
+		}
+    </style>
+</head>
+<body>
+    <label>Día</label>
+    <input type="number" id="dia">
+    <br>
+    <label>Mes</label>
+    <input type="number" id="mes">
+    <br>
+    <label>Año</label>
+    <input type="number" id="anio">
+    <br>
+    <button onclick="comprobarFecha()">Comprobar fecha</button>
+    <script>
+        function comprobarFecha() {
+            var dia = document.getElementById("dia").value;
+            var mes = document.getElementById("mes").value;
+            var anio = document.getElementById("anio").value;
+            if (dia >= 1 && dia <= 31) {
+                var diaCorrecto = true;
+            }
+            if (mes >= 1 && mes <= 12) {
+                var mesCorrecto = true;
+            }
+            if (anio >= 1970 && anio <=2050) {
+                var anioCorrecto = true;
+            }
+            if (diaCorrecto && mesCorrecto && anioCorrecto) {
+                alert("La fecha " + dia + "/" + mes + "/" + anio + " introducida es correcta.");
+            } else {
+                alert("La fecha " + dia + "/" + mes + "/" + anio + " introducida es incorrecta.");
+            }
+        }
+    </script>
+</body>
+</html>
