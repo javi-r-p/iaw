@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>Ejercicio 29</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+		input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		input[type=number] {
+			-moz-appearance: textfield;
+			appearance: textfield;
+		}
+    </style>
+</head>
+<body>
+    <input type="number" id="operador1">
+    <br>
+    <input type="number" id="operador2">
+    <input type="number" id="resultado" readonly>
+    <br><br>
+    <button onclick="operar(1)"> + </button>
+    <button onclick="operar(2)"> - </button>
+    <br>
+    <button onclick="operar(3)"> / </button>
+    <button onclick="operar(4)"> * </button>
+    <script>
+        function operar (operacion) {
+            var operador1 = document.getElementById("operador1").value;
+            var operador2 = document.getElementById("operador2").value;
+            var resultado = document.getElementById("resultado");
+            switch (operacion) {
+                case 1:
+                    var valor = operador1 + operador2;
+                    break;
+                case 2:
+                    var valor = operador1 - operador2;
+                    break;
+                case 3:
+                    var valor = operador1 / operador2;
+                    break;
+                case 4:
+                    var valor = operador1 * operador2;
+                    break;
+            }
+            resultado.value = valor;
+        }
+    </script>
+</body>
+</html>
