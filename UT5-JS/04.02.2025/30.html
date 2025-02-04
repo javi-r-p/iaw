@@ -13,6 +13,9 @@
         th, td {
             padding: 10px;
         }
+        table {
+            width: 100%;
+        }
         .enlace {
             color: blue;
             text-decoration: underline;
@@ -33,18 +36,25 @@
             <th>Quitar</th>
         </tr>
         <tr>
-            <td><input type="text" id="codigo"></td>
-            <td><input type="text" id="nombre"></td>
-            <td><input type="text" id="marca"></td>
-            <td><input type="text" id="precio"></td>
-            <td><input type="number" id="unidades"></td>
-            <td><input type="text" id="subtotal" readonly></td>
-            <td class="enlace" onclick="aniadir()">Añadir</td>
-            <td class="enlace" onclick="quitar()">Quitar</td>
+            <td>1</td>
+            <td>Disco duro 7.200RPM 500GB</td>
+            <td>Seagate</td>
+            <td><input type="number" id="precio0" value="30"></td>
+            <td><input type="number" id="unidades0" value="0"></td>
+            <td><input type="number" id="subtotal0" readonly></td>
+            <td><a href="#" onclick="aniadir(0)">Añadir</a></td>
+            <td><a href="#" onclick="quitar(0)">Quitar</a></td>
         </tr>
-        <script>
-            
-        </script>
+        <tr>
+            <td>1</td>
+            <td>Disco duro 20.000RPM 2TB</td>
+            <td>Western Digital</td>
+            <td><input type="number" id="precio1" value="200"></td>
+            <td><input type="number" id="unidades1" value="0"></td>
+            <td><input type="number" id="subtotal1" readonly></td>
+            <td><a href="#" onclick="aniadir(1)">Añadir</a></td>
+            <td><a href="#" onclick="quitar(1)">Quitar</a></td>
+        </tr>
         <tr>
             <td></td>
             <td></td>
@@ -56,5 +66,8 @@
             <td></td>
         </tr>
     </table>
+    <script>
+        
+    </script>
 </body>
 </html>
