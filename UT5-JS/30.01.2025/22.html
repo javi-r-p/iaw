@@ -18,11 +18,14 @@
 <body>
     <p id="parrafo" onclick="cambiarColor()">Este texto es un párrafo</p>
     <script>
+        var numero = 0;
+        var parrafo = document.getElementById("parrafo")
+        var colores = ["red", "green", "blue", "yellow", "orange", "lightgreen", "gray", "lightgray", "pink", "purple"]
         function cambiarColor() {
-            let parrafo = document.getElementById("parrafo")
-            let colores = ["red", "green", "blue", "yellow"]
-            let numero = Math.floor(Math.random()*4)
-            
+            numero++;
+            if (numero > colores.length) {
+                numero = 0;
+            }
             parrafo.style.color=colores[numero]
         }
     </script>

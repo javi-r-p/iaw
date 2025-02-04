@@ -18,7 +18,16 @@
 <body>
     <input type="text" id="texto" onblur="comprobar()">
     <script>
-        
+        function comprobar() {
+            let texto = document.getElementById("texto").value;
+            let resultado = true;
+            for (i=0; (i<=texto.length) && (resultado == true); i++) {
+                if ((texto.charAt(i) >= '0') && (texto.charAt(i) <= '9')) {
+                    alert("La cadena de caracteres contiene números.");
+                    resultado == false;
+                }
+            }
+        }
     </script>
 </body>
 </html>
